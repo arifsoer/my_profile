@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'components/my_description.dart';
+import 'components/photo_profile.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
@@ -32,84 +35,26 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               width: size.width,
               height: size.height,
-              child: Row(
+              child: Stack(
                 children: [
-                  Expanded(
-                    flex: 3,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 75,
-                        vertical: 50,
-                      ),
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 300),
-                          Text(
-                            'Arif Surahman',
-                            style: Theme.of(context).textTheme.displayLarge,
-                          ),
-                          const SizedBox(height: 50),
-                          Text(
-                            'A technophile obsessed with state-of-the-art technologies',
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.displaySmall,
-                          ),
-                        ],
-                      ),
+                  Positioned(
+                    right: 0,
+                    child: SizedBox(
+                      width: size.width / 2.1,
+                      height: size.height,
+                      child: PhotoProfile(scrollPos: scrollPos),
                     ),
                   ),
-                  Expanded(
-                    flex: 2,
-                    child: LayoutBuilder(
-                      builder:
-                          (BuildContext context, BoxConstraints constraints) {
-                        return Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(),
-                            AnimatedPositioned(
-                              duration: const Duration(milliseconds: 300),
-                              bottom: scrollPos / 5 - 150,
-                              child: Container(
-                                height: constraints.maxHeight * 0.9,
-                                width: constraints.maxHeight * 0.9,
-                                decoration: const BoxDecoration(
-                                  color: Colors.lightBlue,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                            ),
-                            AnimatedPositioned(
-                              duration: const Duration(milliseconds: 200),
-                              bottom: scrollPos / 5 - 200,
-                              child: Container(
-                                height: constraints.maxHeight * 0.6,
-                                width: constraints.maxHeight * 0.6,
-                                decoration: const BoxDecoration(
-                                  color: Colors.blueGrey,
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                            ),
-                            AnimatedPositioned(
-                              duration: const Duration(milliseconds: 150),
-                              bottom: scrollPos / 4,
-                              child: Image.asset(
-                                'assets/images/arifsurahman-removebg-preview.png',
-                                width: 750,
-                                height: 750,
-                              ),
-                            )
-                          ],
-                        );
-                      },
-                    ),
+                  const Positioned(
+                    left: 0,
+                    child: MyDescription(),
                   ),
                 ],
               ),
             ),
-            SizedBox(
+            Container(
               height: size.height * 1,
+              color: Colors.blue,
             )
           ],
         ),
