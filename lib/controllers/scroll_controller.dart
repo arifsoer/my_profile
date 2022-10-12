@@ -5,7 +5,6 @@ class ScrollProvider extends ChangeNotifier {
   ScrollProvider({this.scrollPosition = 0});
 
   void changeScrollOffset(double newOffset) {
-    print(newOffset);
     scrollPosition = newOffset;
     notifyListeners();
   }

@@ -15,7 +15,7 @@ class MyDescription extends StatelessWidget {
       color: Colors.transparent,
       child: Column(
         children: [
-          const SizedBox(height: 300),
+          const SizedBox(height: 270),
           Text(
             'Arif Surahman',
             style: Theme.of(context).textTheme.displayLarge,

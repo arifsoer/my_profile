@@ -15,8 +15,7 @@ class PhotoProfile extends StatelessWidget {
         return Stack(
           alignment: Alignment.center,
           children: [
-            AnimatedPositioned(
-              duration: const Duration(milliseconds: 300),
+            Positioned(
               bottom: scrollPos / 5 - 150,
               child: Container(
                 height: constraints.maxHeight * 0.9,
@@ -27,8 +26,7 @@ class PhotoProfile extends StatelessWidget {
                 ),
               ),
             ),
-            AnimatedPositioned(
-              duration: const Duration(milliseconds: 200),
+            Positioned(
               bottom: scrollPos / 5 - 200,
               child: Container(
                 height: constraints.maxHeight * 0.7,
@@ -39,8 +37,7 @@ class PhotoProfile extends StatelessWidget {
                 ),
               ),
             ),
-            AnimatedPositioned(
-              duration: const Duration(milliseconds: 150),
+            Positioned(
               bottom: scrollPos / 4,
               child: Image.asset(
                 'assets/images/arifsurahman-removebg-preview.png',

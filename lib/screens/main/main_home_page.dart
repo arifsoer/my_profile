@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'components/header.dart';
 import 'components/my_description.dart';
 import 'components/photo_profile.dart';
 
@@ -27,21 +28,23 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SingleChildScrollView(
         controller: scrollController,
         child: Column(
           children: [
+            const Header(),
             SizedBox(
               width: size.width,
-              height: size.height,
+              height: size.height - 80,
               child: Stack(
                 children: [
                   Positioned(
                     right: 0,
                     child: SizedBox(
                       width: size.width / 2.1,
-                      height: size.height,
+                      height: (size.height - 80),
                       child: PhotoProfile(scrollPos: scrollPos),
                     ),
                   ),
@@ -53,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Container(
-              height: size.height * 1,
+              height: size.height * 0.3,
               color: Colors.blue,
             )
           ],
