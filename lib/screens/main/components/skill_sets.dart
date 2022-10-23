@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_profile/contant.dart';
 
 import 'skill_set_items/skill_set_header.dart';
+import 'skill_set_items/skill_set_items.dart';
 
 class SkillSets extends StatelessWidget {
   const SkillSets({
@@ -17,7 +19,7 @@ class SkillSets extends StatelessWidget {
       width: double.infinity,
       decoration: const BoxDecoration(
         border: Border(
-          top: BorderSide(color: Color(0xfffcc200), width: 5),
+          top: BorderSide(color: kGoldColor, width: 5),
         ),
         color: Colors.black,
       ),
@@ -30,6 +32,8 @@ class SkillSets extends StatelessWidget {
               child: Column(
                 children: const [
                   SkillSetHeader(),
+                  SizedBox(height: kDefaultPadding),
+                  SkillSetItems(),
                 ],
               ),
             ),
