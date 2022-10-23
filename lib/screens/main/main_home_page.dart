@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'components/header.dart';
 import 'components/my_description.dart';
 import 'components/photo_profile.dart';
+import 'components/skill_sets.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -55,10 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            Container(
-              height: size.height * 0.3,
-              color: Colors.blue,
-            )
+            SkillSets(size: size)
           ],
         ),
       ),

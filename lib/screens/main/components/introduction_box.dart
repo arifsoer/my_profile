@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'my_photo.dart';
-
 class IntroductionBox extends StatelessWidget {
   const IntroductionBox({
     Key? key,

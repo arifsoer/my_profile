@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ManuItem extends StatelessWidget {
+class ManuItem extends StatefulWidget {
   const ManuItem({
     Key? key,
     required this.text,
@@ -13,25 +13,44 @@ class ManuItem extends StatelessWidget {
   final VoidCallback press;
 
   @override
+  State<ManuItem> createState() => _ManuItemState();
+}
+
+class _ManuItemState extends State<ManuItem> {
+  bool _isHover = false;
+
+  Color _borderColor() {
+    if (_isHover && !widget.isActive) {
+      return Colors.black.withOpacity(0.4);
+    } else if (widget.isActive) {
+      return Colors.black;
+    }
+    return Colors.transparent;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: press,
+      onTap: widget.press,
+      onHover: (value) => {
+        setState(() {
+          _isHover = value;
+        })
+      },
       child: Container(
         decoration: BoxDecoration(
           border: Border(
-            bottom: isActive
-                ? const BorderSide(
-                    color: Colors.black,
-                    width: 3,
-                  )
-                : BorderSide.none,
+            bottom: BorderSide(
+              color: _borderColor(),
+              width: 3,
+            ),
           ),
         ),
         child: Text(
-          text,
+          widget.text,
           style: TextStyle(
             fontSize: 20,
-            fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+            fontWeight: widget.isActive ? FontWeight.bold : FontWeight.normal,
           ),
         ),
       ),
