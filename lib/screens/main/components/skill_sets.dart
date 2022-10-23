@@ -3,6 +3,7 @@ import 'package:my_profile/contant.dart';
 
 import 'skill_set_items/skill_set_header.dart';
 import 'skill_set_items/skill_set_items.dart';
+import 'skill_set_items/tech_stack_items.dart';
 
 class SkillSets extends StatelessWidget {
   const SkillSets({
@@ -15,7 +16,6 @@ class SkillSets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: size.height * 0.8,
       width: double.infinity,
       decoration: const BoxDecoration(
         border: Border(
@@ -31,9 +31,13 @@ class SkillSets extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: const [
-                  SkillSetHeader(),
+                  SkillSetHeader(title: 'My Skill Set'),
                   SizedBox(height: kDefaultPadding),
                   SkillSetItems(),
+                  SizedBox(height: kDefaultPadding * 2),
+                  SkillSetHeader(title: 'Tech Stack'),
+                  SizedBox(height: kDefaultPadding),
+                  TechStackItem(),
                 ],
               ),
             ),

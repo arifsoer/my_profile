@@ -4,7 +4,10 @@ import 'package:my_profile/contant.dart';
 class SkillSetHeader extends StatelessWidget {
   const SkillSetHeader({
     Key? key,
+    required this.title,
   }) : super(key: key);
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,7 @@ class SkillSetHeader extends StatelessWidget {
             ),
           ),
           child: Text(
-            'My Skill Set',
+            title,
             style: Theme.of(context).textTheme.headline3!.copyWith(
                   color: kGoldColor,
                 ),
