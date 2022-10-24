@@ -18,13 +18,10 @@ class Header extends StatelessWidget {
         Row(
           children: List.generate(
             menus.length,
-            (index) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 30),
-              child: ManuItem(
-                text: menus[index],
-                isActive: index == context.watch<MenuController>().activeIndex,
-                press: () => context.read<MenuController>().selectMenu(index),
-              ),
+            (index) => ManuItem(
+              text: menus[index].title,
+              isActive: index == context.watch<MenuController>().activeIndex,
+              press: () => context.read<MenuController>().selectMenu(index),
             ),
           ),
         ),

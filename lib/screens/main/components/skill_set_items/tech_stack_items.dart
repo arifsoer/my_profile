@@ -54,7 +54,7 @@ class _ItemState extends State<Item> {
                 children: [
                   Image.asset(
                     widget.techStack.logoUrl!,
-                    height: 175,
+                    height: 140,
                   ),
                   const SizedBox(height: kDefaultPadding / 2),
                   Text(
