@@ -1,102 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_profile/contant.dart';
-import 'package:provider/provider.dart';
 import 'package:my_profile/controllers/menu_controller.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
+import 'components/home_section.dart';
 import 'components/menu_item.dart';
-import 'components/my_description.dart';
-import 'components/photo_profile.dart';
 import 'components/skill_sets.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final scrollController = ScrollController();
-  double scrollPos = 0;
-  Color toolbarBackgroundColor = myProfileBackgroundColor;
-  Color textToolbarColor = kDefaultAppbarTextColor;
-
-  @override
-  void initState() {
-    scrollController.addListener(() {
-      final offset = scrollController.offset;
-      setState(() {
-        scrollPos = offset;
-        if (offset > 908) {
-          textToolbarColor = kGoldColor;
-          toolbarBackgroundColor = Colors.black;
-        } else if (offset <= 900) {
-          toolbarBackgroundColor = myProfileBackgroundColor;
-          textToolbarColor = kDefaultAppbarTextColor;
-        }
-      });
-    });
-    super.initState();
-  }
-
-  void setScroll(double position) {
-    scrollController.animateTo(
-      position,
-      duration: kDefaultDuration,
-      curve: Curves.easeIn,
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final menus = context.read<MenuController>().listMenu;
+    final menuController = Get.put(MenuController());
+    final menus = menuController.listMenu;
+
+    const contents = <Widget>[
+      HomeSection(),
+      SkillSets(),
+    ];
 
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: kAppBarHeight,
-        backgroundColor: toolbarBackgroundColor,
-        elevation: 0,
-        actions: List.generate(
-          menus.length,
-          (index) => ManuItem(
-            text: menus[index].title,
-            isActive: index == context.watch<MenuController>().activeIndex,
-            press: () {
-              context.read<MenuController>().selectMenu(index);
-              setScroll(menus[index].position);
-            },
-            textColor: textToolbarColor,
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        controller: scrollController,
-        child: Column(
-          children: [
-            SizedBox(
-              width: size.width,
-              height: size.height - kAppBarHeight,
-              child: Stack(
+      body: Column(
+        children: [
+          Obx(
+            () => Container(
+              height: kAppBarHeight,
+              color: menuController.toolbarBackgroundColor,
+              child: Row(
                 children: [
-                  Positioned(
-                    right: 0,
-                    child: SizedBox(
-                      width: size.width / 2.1,
-                      height: (size.height - kAppBarHeight),
-                      child: PhotoProfile(scrollPos: scrollPos),
+                  const Spacer(),
+                  ...List.generate(
+                    menus.length,
+                    (index) => ManuItem(
+                      text: menus[index].title,
+                      isActive: index == menuController.activeIndex,
+                      press: () => menuController.showContent(index),
+                      textColor: menuController.textToolbarColor,
                     ),
-                  ),
-                  const Positioned(
-                    left: 0,
-                    child: MyDescription(),
-                  ),
+                  )
                 ],
               ),
             ),
-            SkillSets(size: size)
-          ],
-        ),
+          ),
+          Expanded(
+            child: ScrollablePositionedList.builder(
+              itemScrollController: menuController.itemScrollController,
+              itemPositionsListener: menuController.itemPositionListener,
+              itemCount: contents.length,
+              itemBuilder: (context, index) => contents[index],
+            ),
+          ),
+        ],
       ),
     );
   }

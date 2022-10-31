@@ -8,10 +8,7 @@ import 'skill_set_items/tech_stack_items.dart';
 class SkillSets extends StatelessWidget {
   const SkillSets({
     Key? key,
-    required this.size,
   }) : super(key: key);
-
-  final Size size;
 
   @override
   Widget build(BuildContext context) {

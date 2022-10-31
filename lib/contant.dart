@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 const kGoldColor = Color(0xfffcc200);
+const kBlackColor = Colors.black;
 
 const kDefaultPadding = 15.0;
 const kDefaultDuration = Duration(milliseconds: 300);

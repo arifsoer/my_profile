@@ -1,9 +1,13 @@
+import 'package:flutter/material.dart';
+
 class Menu {
   String title;
-  double position;
+  Color? toolbarBackgroundColor;
+  Color? textToolbarColor;
 
   Menu({
     required this.title,
-    required this.position,
+    this.toolbarBackgroundColor,
+    this.textToolbarColor,
   });
 }
