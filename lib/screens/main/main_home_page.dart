@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_profile/contant.dart';
 import 'package:my_profile/controllers/menu_controller.dart';
+import 'package:my_profile/screens/main/components/section_container.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import 'components/home_section.dart';
 import 'components/menu_item.dart';
-import 'components/skill_sets.dart';
+import 'components/skill_set_items.dart';
+import 'components/tech_stack_items.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -18,7 +20,15 @@ class MyHomePage extends StatelessWidget {
 
     const contents = <Widget>[
       HomeSection(),
-      SkillSets(),
+      SectionContainer(
+        title: 'My Skill Set',
+        content: SkillSetItems(),
+        isWithTopBar: true,
+      ),
+      SectionContainer(
+        title: 'Tech Stack',
+        content: TechStackItem(),
+      ),
     ];
 
     return Scaffold(

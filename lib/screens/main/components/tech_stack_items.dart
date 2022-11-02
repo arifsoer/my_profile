@@ -70,7 +70,7 @@ class _ItemState extends State<Item> {
             Positioned.fill(
               child: AnimatedOpacity(
                 opacity: _isHover ? 1 : 0,
-                duration: const Duration(milliseconds: 300),
+                duration: kDefaultDuration,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(kDefaultPadding),
